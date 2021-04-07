@@ -28,6 +28,6 @@ path_content - куда сохранить результат работы ут�
 
 ## Как проверить?
 необходимо выполнить команду:
-git clone https://github.com/ILope92/tenzor_test.git
-cd ./tenzor_test
-python find_content.py https://lenta.ru/news/2021/03/31/changes/
+- git clone https://github.com/ILope92/tenzor_test.git
+- cd ./tenzor_test
+- python find_content.py https://lenta.ru/news/2021/03/31/changes/
