@@ -1,0 +1,126 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "textwrap",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "textwrap",
+        "description": "textwrap",
+        "detail": "textwrap",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "html",
+        "importPath": "lxml",
+        "description": "lxml",
+        "isExtraImport": true,
+        "detail": "lxml",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "config",
+        "description": "config",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "content",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "content = f\"//p | //p//a/@href | //p//a/text() | //h1 | //h2 | //i | //i//a/@href | //i//a/text()\"\npath_content = ''\ndomain = ['.ru', '.com', '.net']",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "path_content",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "path_content = ''\ndomain = ['.ru', '.com', '.net']",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "domain",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "domain = ['.ru', '.com', '.net']",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "GetData",
+        "kind": 6,
+        "importPath": "find_content",
+        "description": "find_content",
+        "peekOfCode": "class GetData(object):\n    __slots__ = ('obj_parser', 'url')\n    def __init__(self, url: str) -> None:\n        self.url = url\n        self.obj_parser = None\n    def get(self):\n        try:\n            get = requests.get(self.url)\n            parsed_body = html.fromstring(get.text)\n            params = config.content",
+        "detail": "find_content",
+        "documentation": {}
+    },
+    {
+        "label": "Files",
+        "kind": 6,
+        "importPath": "find_content",
+        "description": "find_content",
+        "peekOfCode": "class Files(GetData):\n    __slots__ = ('make_dir')\n    def __init__(self, url: str) -> None:\n        GetData.__init__(self, url)\n        self.make_dir = self.__make_path()\n    def save_content(self, content: str) -> bool:\n        try:\n            path_file = re.sub('https://', '', self.url)\n            # save symbol '/' in filename\n            path_file = re.sub('/', u'\\u2215', path_file)",
+        "detail": "find_content",
+        "documentation": {}
+    },
+    {
+        "label": "TrueContent",
+        "kind": 6,
+        "importPath": "find_content",
+        "description": "find_content",
+        "peekOfCode": "class TrueContent(GetData):\n    __slots__ = ('__content')\n    def __init__(self, url: str) -> None:\n        GetData.__init__(self, url)\n        self.obj_parser = self.get()[1]\n        paragraph, links = self.__get_content(self.obj_parser)\n        all_text = self.__add_links(paragraph, links)\n        self.__content = self.__line_width(all_text)\n    def __get_content(self, parser_obj: list) -> tuple:\n        paragraphs = []     # content (all text)",
+        "detail": "find_content",
+        "documentation": {}
+    }
+]
